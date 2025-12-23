@@ -33,7 +33,7 @@ def test_top_pids_contains_valid_integers():
 def test_maximum_three_pids():
     """Verify that at most three PIDs are listed in the file."""
     output_file = Path("/app/top_pids.txt")
-    lines = [l.strip() for l in output_file.read_text().strip().split('\n') if l.strip()]
+    lines = [line.strip() for line in output_file.read_text().strip().split('\n') if line.strip()]
     
     assert len(lines) <= 3, f"Found {len(lines)} PIDs, expected maximum 3"
 
@@ -86,7 +86,7 @@ def test_pids_match_filtered_process_name():
 def test_pids_sorted_by_memory_descending():
     """Verify that PIDs are sorted by memory usage in descending order."""
     output_file = Path("/app/top_pids.txt")
-    lines = [l.strip() for l in output_file.read_text().strip().split('\n') if l.strip()]
+    lines = [line.strip() for line in output_file.read_text().strip().split('\n') if line.strip()]
     
     if len(lines) < 2:
         return  # Can't test sorting with less than 2 PIDs
@@ -139,7 +139,7 @@ def test_one_pid_per_line():
 def test_all_pids_are_unique():
     """Verify that all PIDs in the output are unique (no duplicates)."""
     output_file = Path("/app/top_pids.txt")
-    lines = [l.strip() for l in output_file.read_text().strip().split('\n') if l.strip()]
+    lines = [line.strip() for line in output_file.read_text().strip().split('\n') if line.strip()]
     
     pids = [int(line) for line in lines]
     unique_pids = set(pids)
